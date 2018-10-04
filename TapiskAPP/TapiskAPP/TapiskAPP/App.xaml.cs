@@ -19,7 +19,8 @@ namespace TapiskAPP
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync($"{nameof(MasterPage)}/{nameof(NavigationPage)}/{nameof(Views.MainPage)}");
+            //await NavigationService.NavigateAsync($"{nameof(MasterPage)}/{nameof(NavigationPage)}/{nameof(Views.MainPage)}");
+            await NavigationService.NavigateAsync($"{nameof(LoginPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -27,6 +28,7 @@ namespace TapiskAPP
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage,MainPageViewModel>();
             containerRegistry.RegisterForNavigation<MasterPage,MasterPageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPage,LoginPageViewModel>();
         }
     }
 }
