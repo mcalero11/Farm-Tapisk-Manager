@@ -12,7 +12,7 @@
     <RootNamespace>TapiskAPP.Droid</RootNamespace>
     <AssemblyName>TapiskAPP.Android</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,12 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
-    <PackageReference Include="Xamarin.Android.Support.Design" Version="25.4.0.2" />
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="25.4.0.2" />
-    <PackageReference Include="Xamarin.Android.Support.v4" Version="25.4.0.2" />
-    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="25.4.0.2" />
-    <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="25.4.0.2" />
+    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
+    <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
+    <PackageReference Include="Xamarin.Android.Support.v4" Version="27.0.2.1" />
+    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="27.0.2.1" />
+    <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2.1" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.0.0.396" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +72,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\fa-brands-400.ttf" />
+    <AndroidAsset Include="Assets\fa-regular-400.ttf" />
+    <AndroidAsset Include="Assets\fa-solid-900.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
