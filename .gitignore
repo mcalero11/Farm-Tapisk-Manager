@@ -1,3 +1,4 @@
 # add files to ignore in all project
 /TapiskAPP/TapiskAPP/TapiskAPP.iOS/Assets.xcassets/AppIcons.appiconset/Contents.json
 *.dia~
+*.dia.autosave
