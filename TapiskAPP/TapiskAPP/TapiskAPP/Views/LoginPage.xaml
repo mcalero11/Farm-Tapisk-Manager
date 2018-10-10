@@ -5,16 +5,58 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TapiskAPP.Views.LoginPage"
              xmlns:controls="clr-namespace:TapiskAPP.Controls">
-
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <controls:CustomImageEntry Image="user"
-                                           LineColor="Purple"/>
-
-            </StackLayout>
-            
+        <ScrollView BackgroundColor="Purple">
+            <Frame HasShadow="True"
+                   Margin="20"
+                   BackgroundColor="White"
+                   CornerRadius="10">
+                <StackLayout VerticalOptions="StartAndExpand"
+                             Spacing="5">
+                    <StackLayout Margin="0,50,0,20">
+                        <Frame BorderColor="Gray"
+                               HeightRequest="70"
+                               WidthRequest="70"
+                               CornerRadius="140"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center">
+                            <StackLayout VerticalOptions="CenterAndExpand">
+                                <Label Text="{Binding IconTextProperty}"
+                                       FontSize="50"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
+                                       TextColor="{Binding IconColorProperty}"
+                                       IsVisible="True">
+                                    <Label.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String" 
+                                                    Android="fa-solid-900.ttf#Font Awesome 5 Free Solid" />
+                                    </Label.FontFamily>
+                                </Label>
+                                <ActivityIndicator IsVisible="False"
+                                                   IsRunning="False"
+                                                   Color="Maroon"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <controls:CustomImageEntry Image="user"
+                                               LineColor="Purple"
+                                               Placeholder="Usuario"
+                                               Text="{Binding Username}"/>
+                    <controls:CustomImageEntry Image="key"
+                                               LineColor="Purple"
+                                               Placeholder="Contraseña"
+                                               IsPassword="True"
+                                               Text="{Binding Password}"/>
+                    <Button Text="Ingresar"
+                            TextColor="White"
+                            BackgroundColor="Purple"
+                            FontAttributes="Bold"
+                            HeightRequest="42"
+                            CornerRadius="21"
+                            Margin="0,20"
+                            Command="{Binding LoginCommand}"/>
+                </StackLayout>
+            </Frame>
         </ScrollView>
-        
     </ContentPage.Content>
 </ContentPage>
