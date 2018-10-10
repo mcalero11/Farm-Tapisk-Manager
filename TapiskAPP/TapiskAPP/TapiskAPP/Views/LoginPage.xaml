@@ -4,7 +4,11 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TapiskAPP.Views.LoginPage"
-             xmlns:controls="clr-namespace:TapiskAPP.Controls">
+             xmlns:controls="clr-namespace:TapiskAPP.Controls"
+             xmlns:conver="clr-namespace:TapiskAPP.Converters">
+    <ContentPage.Resources>
+        <conver:ReverseBooleanConverter x:Key="BooleanConverter" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView BackgroundColor="Purple">
             <Frame HasShadow="True"
@@ -26,14 +30,14 @@
                                        HorizontalTextAlignment="Center"
                                        VerticalTextAlignment="Center"
                                        TextColor="{Binding IconColorProperty}"
-                                       IsVisible="True">
+                                       IsVisible="{Binding IsBusy, Converter={StaticResource BooleanConverter}}">
                                     <Label.FontFamily>
                                         <OnPlatform x:TypeArguments="x:String" 
                                                     Android="fa-solid-900.ttf#Font Awesome 5 Free Solid" />
                                     </Label.FontFamily>
                                 </Label>
-                                <ActivityIndicator IsVisible="False"
-                                                   IsRunning="False"
+                                <ActivityIndicator IsVisible="{Binding IsBusy}"
+                                                   IsRunning="{Binding IsBusy}"
                                                    Color="Maroon"/>
                             </StackLayout>
                         </Frame>

@@ -5,6 +5,7 @@ using TapiskAPP.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.DryIoc;
+using TapiskAPP.Views.MenuItemPages;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TapiskAPP
@@ -29,6 +30,11 @@ namespace TapiskAPP
             containerRegistry.RegisterForNavigation<MainPage,MainPageViewModel>();
             containerRegistry.RegisterForNavigation<MasterPage,MasterPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage,LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<UserPage,UserPageViewModel>();
+            containerRegistry.RegisterForNavigation<CropPage,CropPageViewModel>();
+            containerRegistry.RegisterForNavigation<HarvestPage,HarvestPageViewModel>();
+
+
         }
     }
 }

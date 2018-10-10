@@ -1,11 +1,13 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using TapiskAPP.Views;
 
 namespace TapiskAPP.ViewModels
 {
@@ -55,11 +57,13 @@ namespace TapiskAPP.ViewModels
             set { SetProperty(ref _pass, value); }
         }
 
+        private IPageDialogService _dialogService { get; set; }
 
         public DelegateCommand LoginCommand { get; set; }
 
-        public LoginPageViewModel(INavigationService navigationService) : base(navigationService)
+        public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService)
         {
+            _dialogService = dialogService;
             IconTextProperty = UserIcon;
             IconColorProperty = UserColor;
 
@@ -70,8 +74,20 @@ namespace TapiskAPP.ViewModels
         {
             IsBusy = true;
             await Task.Delay(2000);
-            IconTextProperty = SuccessIcon;
-            IconColorProperty = SuccessColor;
+            if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password))
+            {
+                IconTextProperty = SuccessIcon;
+                IconColorProperty = SuccessColor;
+                IsBusy = false;
+                await Task.Delay(600);
+                await NavigationService.NavigateAsync(new Uri($"http://www.TapiskAPP.com/{nameof(MasterPage)}/{nameof(Xamarin.Forms.NavigationPage)}/{nameof(Views.MainPage)}", System.UriKind.Absolute));
+                return;
+            }
+            IconTextProperty = UserIcon;
+            IconColorProperty = UserColor;
+            IsBusy = false;
+            await _dialogService.DisplayAlertAsync("Problemas","Las credenciales son incorrectas","Aceptar");
+
         }
     }
 }

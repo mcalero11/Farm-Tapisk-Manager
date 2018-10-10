@@ -3,20 +3,95 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                   prism:ViewModelLocator.AutowireViewModel="True"
-                  x:Class="TapiskAPP.Views.MasterPage">
+                  x:Class="TapiskAPP.Views.MasterPage"
+                  xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms">
 
     <MasterDetailPage.Master>
         <ContentPage Title="Menu">
-            <StackLayout Padding="20">
-                <!-- TODO: // Update the Layout and add some real menu items  -->
-                <Button Text="&#xf2bb; ViewA" Command="{Binding NavigateCommand}" CommandParameter="ViewA">
-                    <Button.FontFamily>
-                        <OnPlatform x:TypeArguments="x:String" 
-                                    Android="fa-regular-400.ttf#Font Awesome 5 Free Regular" />
-                    </Button.FontFamily>
-                </Button>
-            </StackLayout>
+            <ListView ItemsSource="{Binding MenuItems}"
+                      SelectedItem="{Binding SelectedItem}"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None">
+                <ListView.Header>
+                    <StackLayout Margin="0,0,0,20">
+                        <StackLayout HeightRequest="100"
+                                     BackgroundColor="DarkRed">
+                            <Label Text="&#xf013;"
+                                   HorizontalOptions="End"
+                                   FontSize="Large"
+                                   Margin="20"
+                                   TextColor="White">
+                                <Label.FontFamily>
+                                    <OnPlatform x:TypeArguments="x:String" 
+                                                Android="fa-solid-900.ttf#Font Awesome 5 Free Solid" />
+                                </Label.FontFamily>
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SettingsCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+
+                        <Frame HeightRequest="75"
+                               WidthRequest="75"
+                               CornerRadius="150"
+                               BorderColor="DarkRed"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               Margin="0,-75,0,0">
+                            <Label Text="&#xf007;"
+                                   FontSize="50"
+                                   TextColor="Maroon"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center">
+                                <Label.FontFamily>
+                                    <OnPlatform x:TypeArguments="x:String" 
+                                                Android="fa-regular-400.ttf#Font Awesome 5 Free Regular" />
+                                </Label.FontFamily>
+                            </Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding HomeCommand}" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Label Text="Nombre Apellido"
+                               HorizontalTextAlignment="Center"
+                               FontSize="Medium"
+                               TextColor="Maroon"/>
+                        <Label Text="Cargo"
+                               HorizontalTextAlignment="Center"
+                               FontSize="Medium"/>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"
+                                         VerticalOptions="Center"
+                                         Margin="20,10"
+                                         Spacing="10">
+                                <Label Text="{Binding Icon}"
+                                       HorizontalOptions="Start"
+                                       FontSize="Large">
+                                    <Label.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String" 
+                                                    Android="fa-solid-900.ttf#Font Awesome 5 Free Solid" />
+                                    </Label.FontFamily>
+                                </Label>
+                                <Label Text="{Binding Title}"
+                                       VerticalOptions="FillAndExpand"
+                                       FontSize="Large"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <b:EventToCommandBehavior EventName="ItemTapped"
+                                              Command="{Binding ItemTappedCommand}"/>
+                </ListView.Behaviors>
+            </ListView>
+
         </ContentPage>
     </MasterDetailPage.Master>
-    
+
 </MasterDetailPage>
