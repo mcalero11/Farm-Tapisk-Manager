@@ -33,8 +33,7 @@ namespace TapiskAPP
             containerRegistry.RegisterForNavigation<UserPage,UserPageViewModel>();
             containerRegistry.RegisterForNavigation<CropPage,CropPageViewModel>();
             containerRegistry.RegisterForNavigation<HarvestPage,HarvestPageViewModel>();
-
-
+            containerRegistry.RegisterForNavigation<SettingsPage,SettingsPageViewModel>();
         }
     }
 }

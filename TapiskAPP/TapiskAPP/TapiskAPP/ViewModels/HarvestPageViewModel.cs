@@ -11,6 +11,7 @@ namespace TapiskAPP.ViewModels
 	{
         public HarvestPageViewModel(INavigationService navigationService) : base(navigationService)
         {
+            Title = "Cosechas";
         }
     }
 }

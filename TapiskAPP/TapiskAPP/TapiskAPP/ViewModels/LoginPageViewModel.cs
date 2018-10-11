@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using TapiskAPP.Services;
 using TapiskAPP.Views;
 
 namespace TapiskAPP.ViewModels
@@ -58,12 +59,17 @@ namespace TapiskAPP.ViewModels
         }
 
         private IPageDialogService _dialogService { get; set; }
+        private IStatusBarColorManager _statusBarColorManager { get; set; }
 
         public DelegateCommand LoginCommand { get; set; }
 
-        public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService)
+        public LoginPageViewModel(INavigationService navigationService, 
+                                    IPageDialogService dialogService,
+                                    IStatusBarColorManager statusBarColorManager) : base(navigationService)
         {
             _dialogService = dialogService;
+            _statusBarColorManager = statusBarColorManager;
+            _statusBarColorManager.SetColor(255,128,0,128);
             IconTextProperty = UserIcon;
             IconColorProperty = UserColor;
 

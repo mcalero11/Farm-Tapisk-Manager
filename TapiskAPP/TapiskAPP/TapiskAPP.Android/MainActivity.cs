@@ -1,8 +1,11 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Plugin.CurrentActivity;
 using Prism;
 using Prism.Ioc;
+using TapiskAPP.Droid.Services;
+using TapiskAPP.Services;
 
 namespace TapiskAPP.Droid
 {
@@ -18,14 +21,16 @@ namespace TapiskAPP.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
+            
         }
     }
 
     public class AndroidInitializer : IPlatformInitializer
     {
+        static StatusBarColorManager statusBarColorManager = new StatusBarColorManager();
         public void RegisterTypes(IContainerRegistry container)
         {
-            // Register any platform specific implementations
+            container.RegisterInstance<IStatusBarColorManager>(statusBarColorManager);
         }
     }
 }

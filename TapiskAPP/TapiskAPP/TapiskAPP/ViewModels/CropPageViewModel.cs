@@ -11,6 +11,7 @@ namespace TapiskAPP.ViewModels
 	{
         public CropPageViewModel(INavigationService navigationService) : base(navigationService)
         {
+            Title = "Cultivos";
         }
     }
 }
