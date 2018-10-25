@@ -57,7 +57,11 @@
                         <Label Text="Nombre Apellido"
                                HorizontalTextAlignment="Center"
                                FontSize="Medium"
-                               TextColor="Maroon"/>
+                               TextColor="Maroon">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding HomeCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Label Text="Cargo"
                                HorizontalTextAlignment="Center"
                                FontSize="Medium"/>

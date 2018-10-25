@@ -4,6 +4,10 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TapiskAPP.Views.MenuItemPages.UserPage"
+             xmlns:SfLists="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              Title="{Binding Title}">
+    <SfLists:SfListView ItemsSource="{Binding Empleados}">
+        
+    </SfLists:SfListView>
   
 </ContentPage>

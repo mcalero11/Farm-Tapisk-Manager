@@ -18,6 +18,10 @@ namespace TapiskAPP
 
         protected override async void OnInitialized()
         {
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzY3ODBAMzEzNjJlMzMyZTMwUUVQOUNCU2hxZGlTUElmLzhNTGJlNTUwZ3hxcUpwUjVyblJYM3BKM3cvcz0=");
+
+
             InitializeComponent();
 
             //await NavigationService.NavigateAsync($"{nameof(MasterPage)}/{nameof(NavigationPage)}/{nameof(Views.MainPage)}");
