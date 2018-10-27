@@ -7,7 +7,23 @@
              xmlns:SfLists="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              Title="{Binding Title}">
     <SfLists:SfListView ItemsSource="{Binding Empleados}">
-        
+        <SfLists:SfListView.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <BoxView Color="Red"
+                             Grid.Column="0"/>
+                    <StackLayout Grid.Column="1">
+                        <Label Text="{Binding Nombre}"/>
+                        <Label Text="{Binding Apellido}" />
+                    </StackLayout>
+                </Grid>
+            </DataTemplate>
+        </SfLists:SfListView.ItemTemplate>
+
     </SfLists:SfListView>
   
 </ContentPage>
