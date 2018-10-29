@@ -7,6 +7,7 @@ namespace TapiskAPP.Views.MenuItemPages
         public UserPage()
         {
             InitializeComponent();
+            listEmployee.SelectionController = new Controls.SelectionListItem(listEmployee);
         }
     }
 }

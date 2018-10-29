@@ -6,21 +6,32 @@
              x:Class="TapiskAPP.Views.MenuItemPages.UserPage"
              xmlns:SfLists="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              Title="{Binding Title}">
-    <SfLists:SfListView ItemsSource="{Binding Empleados}">
+    <SfLists:SfListView x:Name="listEmployee"
+                        ItemsSource="{Binding Empleados}"
+                        AutoFitMode="Height"
+                        TapCommand="{Binding TapCommand}"
+                        HoldCommand="{Binding HoldCommand}"
+                        BackgroundColor="WhiteSmoke"
+                        SelectionBackgroundColor="Transparent">
         <SfLists:SfListView.ItemTemplate>
             <DataTemplate>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.3*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <BoxView Color="Red"
-                             Grid.Column="0"/>
-                    <StackLayout Grid.Column="1">
-                        <Label Text="{Binding Nombre}"/>
-                        <Label Text="{Binding Apellido}" />
-                    </StackLayout>
-                </Grid>
+                <Frame HasShadow="True"
+                       BorderColor="GhostWhite"
+                       Margin="4"
+                       CornerRadius="3">
+                    <Grid Margin="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <BoxView Color="Red"
+                                 Grid.Column="0"/>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="{Binding Nombre}"/>
+                            <Label Text="{Binding Apellido}" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
             </DataTemplate>
         </SfLists:SfListView.ItemTemplate>
 

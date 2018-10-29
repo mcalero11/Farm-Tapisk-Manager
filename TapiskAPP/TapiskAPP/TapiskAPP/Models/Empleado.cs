@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TapiskAPP.Models
 {
-    public class Empleado
+    public class Empleado : BaseResponse
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
