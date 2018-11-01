@@ -31,6 +31,10 @@ namespace TapiskAPP.Droid
 			global::Syncfusion.ListView.XForms.Android.Resource.String.ApplicationName = global::TapiskAPP.Droid.Resource.String.ApplicationName;
 			global::Syncfusion.ListView.XForms.Android.Resource.String.Hello = global::TapiskAPP.Droid.Resource.String.Hello;
 			global::Syncfusion.ListView.XForms.Android.Resource.String.Load_More = global::TapiskAPP.Droid.Resource.String.Load_More;
+			global::Syncfusion.SfPullToRefresh.XForms.Android.Resource.Drawable.shadow_effect = global::TapiskAPP.Droid.Resource.Drawable.shadow_effect;
+			global::Syncfusion.SfPullToRefresh.XForms.Android.Resource.Id.ShadowEffectShape = global::TapiskAPP.Droid.Resource.Id.ShadowEffectShape;
+			global::Syncfusion.SfPullToRefresh.XForms.Android.Resource.String.ApplicationName = global::TapiskAPP.Droid.Resource.String.ApplicationName;
+			global::Syncfusion.SfPullToRefresh.XForms.Android.Resource.String.Hello = global::TapiskAPP.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::TapiskAPP.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -2983,11 +2987,11 @@ namespace TapiskAPP.Droid
 			// aapt resource value: 0x7f02012b
 			public const int notification_icon_background = 2130837803;
 			
-			// aapt resource value: 0x7f020131
-			public const int notification_template_icon_bg = 2130837809;
-			
 			// aapt resource value: 0x7f020132
-			public const int notification_template_icon_low_bg = 2130837810;
+			public const int notification_template_icon_bg = 2130837810;
+			
+			// aapt resource value: 0x7f020133
+			public const int notification_template_icon_low_bg = 2130837811;
 			
 			// aapt resource value: 0x7f02012c
 			public const int notification_tile_bg = 2130837804;
@@ -2996,13 +3000,16 @@ namespace TapiskAPP.Droid
 			public const int notify_panel_notification_icon_bg = 2130837805;
 			
 			// aapt resource value: 0x7f02012e
-			public const int tooltip_frame_dark = 2130837806;
+			public const int shadow_effect = 2130837806;
 			
 			// aapt resource value: 0x7f02012f
-			public const int tooltip_frame_light = 2130837807;
+			public const int tooltip_frame_dark = 2130837807;
 			
 			// aapt resource value: 0x7f020130
-			public const int user = 2130837808;
+			public const int tooltip_frame_light = 2130837808;
+			
+			// aapt resource value: 0x7f020131
+			public const int user = 2130837809;
 			
 			static Drawable()
 			{
@@ -3034,6 +3041,9 @@ namespace TapiskAPP.Droid
 			
 			// aapt resource value: 0x7f090037
 			public const int SYM = 2131296311;
+			
+			// aapt resource value: 0x7f0900cb
+			public const int ShadowEffectShape = 2131296459;
 			
 			// aapt resource value: 0x7f0900b6
 			public const int action0 = 2131296438;
