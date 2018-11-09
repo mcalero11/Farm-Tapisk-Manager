@@ -9,16 +9,16 @@
              Title="{Binding Title}">
     <Pull:SfPullToRefresh  TransitionMode="SlideOnTop"
                            RefreshContentThreshold="0"
-                           PullingThershold="50"
+                           PullingThershold="60"
                            FlowDirection="MatchParent">
         <Pull:SfPullToRefresh.PullableContent>
             <SfLists:SfListView x:Name="listEmployee"
-                        ItemsSource="{Binding Empleados}"
-                        AutoFitMode="Height"
-                        TapCommand="{Binding TapCommand}"
-                        HoldCommand="{Binding HoldCommand}"
-                        BackgroundColor="WhiteSmoke"
-                        SelectionBackgroundColor="Transparent">
+                                ItemsSource="{Binding Empleados}"
+                                AutoFitMode="Height"
+                                TapCommand="{Binding TapCommand}"
+                                HoldCommand="{Binding HoldCommand}"
+                                BackgroundColor="WhiteSmoke"
+                                SelectionBackgroundColor="Transparent">
                 <SfLists:SfListView.ItemTemplate>
                     <DataTemplate>
                         <Frame HasShadow="True"
@@ -39,7 +39,6 @@
                         </Frame>
                     </DataTemplate>
                 </SfLists:SfListView.ItemTemplate>
-
             </SfLists:SfListView>
         </Pull:SfPullToRefresh.PullableContent>
     </Pull:SfPullToRefresh>
