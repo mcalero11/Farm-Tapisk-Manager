@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using TapiskAPP.Models;
 using TapiskAPP.Services;
 using TapiskAPP.Views;
 
@@ -58,15 +59,27 @@ namespace TapiskAPP.ViewModels
             set { SetProperty(ref _pass, value); }
         }
 
+        private bool _remember;
+
+        public bool Remember
+        {
+            get { return _remember; }
+            set { SetProperty(ref _remember, value); }
+        }
+
+
         private IPageDialogService _dialogService { get; set; }
         private IStatusBarColorManager _statusBarColorManager { get; set; }
-
+        public ISqLiteService _sqLiteService { get; set; }
         public DelegateCommand LoginCommand { get; set; }
 
         public LoginPageViewModel(INavigationService navigationService, 
                                     IPageDialogService dialogService,
-                                    IStatusBarColorManager statusBarColorManager) : base(navigationService)
+                                    IStatusBarColorManager statusBarColorManager,
+                                    ISqLiteService sqLiteService) : base(navigationService)
         {
+            _sqLiteService = sqLiteService;
+            Task.Run( ()=> CheckCredential());
             _dialogService = dialogService;
             _statusBarColorManager = statusBarColorManager;
             _statusBarColorManager.SetColor(255,128,0,128);
@@ -76,18 +89,31 @@ namespace TapiskAPP.ViewModels
             LoginCommand = new DelegateCommand(Login);
         }
 
+        private async Task CheckCredential()
+        {
+            var user = await new Data.SqLiteService(_sqLiteService).RetrieveUser();
+            if (user != null)
+            {
+                await NavigationService.NavigateAsync(new Uri($"http://www.TapiskAPP.com/{nameof(MasterPage)}/{nameof(Xamarin.Forms.NavigationPage)}/{nameof(Views.MainPage)}", System.UriKind.Absolute));
+            }
+        }
+
         private async void Login()
         {
             IsBusy = true;
-            await Task.Delay(2000);
-            if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password))
+            if (!string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password))
             {
-                IconTextProperty = SuccessIcon;
-                IconColorProperty = SuccessColor;
-                IsBusy = false;
-                await Task.Delay(600);
-                await NavigationService.NavigateAsync(new Uri($"http://www.TapiskAPP.com/{nameof(MasterPage)}/{nameof(Xamarin.Forms.NavigationPage)}/{nameof(Views.MainPage)}", System.UriKind.Absolute));
-                return;
+                bool status = await Task.Run(()=> new Data.RestService().DoLogin(Username, Password, Remember, _sqLiteService));
+                if (status)
+                {
+                    IconTextProperty = SuccessIcon;
+                    IconColorProperty = SuccessColor;
+                    IsBusy = false;
+                    await Task.Delay(700);
+                    await NavigationService.NavigateAsync(new Uri($"http://www.TapiskAPP.com/{nameof(MasterPage)}/{nameof(Xamarin.Forms.NavigationPage)}/{nameof(Views.MainPage)}", System.UriKind.Absolute));
+                    return;
+                }
+                
             }
             IconTextProperty = UserIcon;
             IconColorProperty = UserColor;

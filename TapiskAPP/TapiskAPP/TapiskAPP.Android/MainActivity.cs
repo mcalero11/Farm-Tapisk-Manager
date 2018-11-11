@@ -28,9 +28,11 @@ namespace TapiskAPP.Droid
     public class AndroidInitializer : IPlatformInitializer
     {
         static StatusBarColorManager statusBarColorManager = new StatusBarColorManager();
+        static SqLiteService sqLiteService = new SqLiteService();
         public void RegisterTypes(IContainerRegistry container)
         {
             container.RegisterInstance<IStatusBarColorManager>(statusBarColorManager);
+            container.RegisterInstance<ISqLiteService>(sqLiteService);
         }
     }
 }

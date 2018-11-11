@@ -59,6 +59,12 @@
                             CornerRadius="21"
                             Margin="0,20"
                             Command="{Binding LoginCommand}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="StartAndExpand"
+                               Text="Recordarme"/>
+                        <Switch OnColor="MediumVioletRed"
+                                IsToggled="{Binding Remember}"/>
+                    </StackLayout>
                 </StackLayout>
             </Frame>
         </ScrollView>

@@ -6,6 +6,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.DryIoc;
 using TapiskAPP.Views.MenuItemPages;
+using TapiskAPP.Data;
+using System.Threading.Tasks;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TapiskAPP
@@ -24,8 +26,8 @@ namespace TapiskAPP
 
             InitializeComponent();
 
-            await NavigationService.NavigateAsync($"{nameof(MasterPage)}/{nameof(NavigationPage)}/{nameof(Views.MainPage)}");
-            //await NavigationService.NavigateAsync($"{nameof(LoginPage)}");
+            //await NavigationService.NavigateAsync($"{nameof(MasterPage)}/{nameof(NavigationPage)}/{nameof(Views.MainPage)}");
+            await NavigationService.NavigateAsync($"{nameof(LoginPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -38,6 +40,11 @@ namespace TapiskAPP
             containerRegistry.RegisterForNavigation<CropPage,CropPageViewModel>();
             containerRegistry.RegisterForNavigation<HarvestPage,HarvestPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage,SettingsPageViewModel>();
+        }
+        protected override void OnSleep()
+        {
+            base.OnSleep();
+            Task.Run(async()=> await new SqLiteService().DisposeUser());
         }
     }
 }

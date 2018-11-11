@@ -19,7 +19,7 @@ namespace TapiskAPP.Services
         #endregion
 
         #region POST
-        Task<Token> DoLogin(string username, string password);
+        Task<bool> DoLogin(string username, string password, bool remember, ISqLiteService sqLiteService);
         Task<bool> SaveEmployee(Empleado empleado);
         Task<bool> SaveUser(Usuario empleado);
         Task<bool> SavePosition(Cargo cargo);

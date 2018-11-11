@@ -13,6 +13,11 @@
                 </TableSection>
                 <TableSection Title="Dispositivo">
                     <SwitchCell Text="Algo se me ocurrirá" />
+                    <ViewCell>
+                        <Button Text="Cerrar Sesión"
+                                TextColor="DarkRed"
+                                Command="{Binding Logout}"/>
+                    </ViewCell>
                 </TableSection>
             </TableRoot>
         </TableView>

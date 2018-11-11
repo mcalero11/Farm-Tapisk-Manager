@@ -13,7 +13,7 @@
                            FlowDirection="MatchParent">
         <Pull:SfPullToRefresh.PullableContent>
             <SfLists:SfListView x:Name="listEmployee"
-                                ItemsSource="{Binding Empleados}"
+                                ItemsSource="{Binding SqliteUser}"
                                 AutoFitMode="Height"
                                 TapCommand="{Binding TapCommand}"
                                 HoldCommand="{Binding HoldCommand}"
@@ -32,8 +32,11 @@
                                 <BoxView Color="Red"
                                  Grid.Column="0"/>
                                 <StackLayout Grid.Column="1">
-                                    <Label Text="{Binding Nombre}"/>
-                                    <Label Text="{Binding Apellido}" />
+                                    <Label Text="{Binding UserId}"/>
+                                    <Label Text="{Binding Name}" />
+                                    <Label Text="{Binding Token}" />
+                                    <Label Text="{Binding CreatedToken}" />
+                                    <Label Text="{Binding RememberToken}" />
                                 </StackLayout>
                             </Grid>
                         </Frame>

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TapiskAPP.Models
 {
-    public class Token
+    public class Token : BaseResponse
     {
     }
 }

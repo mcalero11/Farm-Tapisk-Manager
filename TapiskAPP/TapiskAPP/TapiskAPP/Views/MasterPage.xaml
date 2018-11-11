@@ -54,7 +54,7 @@
                                 <TapGestureRecognizer Command="{Binding HomeCommand}" />
                             </Frame.GestureRecognizers>
                         </Frame>
-                        <Label Text="Nombre Apellido"
+                        <Label Text="{Binding Nombres}"
                                HorizontalTextAlignment="Center"
                                FontSize="Medium"
                                TextColor="Maroon">
