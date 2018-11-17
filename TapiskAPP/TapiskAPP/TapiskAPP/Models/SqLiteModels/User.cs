@@ -12,5 +12,7 @@ namespace TapiskAPP.Models.SqLiteModels
         public string Token { get; set; }
         public long CreatedToken { get; set; }
         public int RememberToken { get; set; }
+        public string PositionName { get; set; }
+        public int PositionId { get; set; }
     }
 }

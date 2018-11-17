@@ -46,5 +46,6 @@ namespace TapiskAPP
             base.OnSleep();
             Task.Run(async()=> await new SqLiteService().DisposeUser());
         }
+        
     }
 }

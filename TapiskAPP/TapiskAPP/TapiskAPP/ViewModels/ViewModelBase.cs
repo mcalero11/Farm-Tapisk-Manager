@@ -17,6 +17,14 @@ namespace TapiskAPP.ViewModels
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
+        private bool _isBusy;
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { SetProperty(ref _isBusy, value); }
+        }
+
 
         public ViewModelBase(INavigationService navigationService)
         {

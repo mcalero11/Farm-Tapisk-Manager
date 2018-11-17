@@ -2,47 +2,60 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TapiskAPP.Views.MenuItemPages.UserPage"
              xmlns:SfLists="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:Pull="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+             xmlns:templates="clr-namespace:TapiskAPP.Controls.DataTemplates"
              Title="{Binding Title}">
     <Pull:SfPullToRefresh  TransitionMode="SlideOnTop"
                            RefreshContentThreshold="0"
                            PullingThershold="60"
-                           FlowDirection="MatchParent">
+                           FlowDirection="MatchParent"
+                           x:Name="pullToRefresh"
+                           ProgressStrokeColor="Indigo"
+                           IsRefreshing="{Binding IsBusy}">
+        <Pull:SfPullToRefresh.Behaviors>
+            <behaviors:EventToCommandBehavior EventName="Refreshing" 
+                                              Command="{Binding RefreshCommand}"/>
+        </Pull:SfPullToRefresh.Behaviors>
         <Pull:SfPullToRefresh.PullableContent>
-            <SfLists:SfListView x:Name="listEmployee"
-                                ItemsSource="{Binding SqliteUser}"
-                                AutoFitMode="Height"
-                                TapCommand="{Binding TapCommand}"
-                                HoldCommand="{Binding HoldCommand}"
-                                BackgroundColor="WhiteSmoke"
-                                SelectionBackgroundColor="Transparent">
-                <SfLists:SfListView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame HasShadow="True"
-                       Margin="4"
-                       CornerRadius="3">
-                            <Grid Margin="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.3*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <BoxView Color="Red"
-                                 Grid.Column="0"/>
-                                <StackLayout Grid.Column="1">
-                                    <Label Text="{Binding UserId}"/>
-                                    <Label Text="{Binding Name}" />
-                                    <Label Text="{Binding Token}" />
-                                    <Label Text="{Binding CreatedToken}" />
-                                    <Label Text="{Binding RememberToken}" />
-                                </StackLayout>
+            <StackLayout>
+                <ActivityIndicator IsVisible="{Binding Activity}"
+                                   IsRunning="{Binding Activity}"
+                                   Color="Indigo"
+                                   Margin="0,0,0,-30"/>
+                <SfLists:SfListView x:Name="listEmployee"
+                                    ItemsSource="{Binding Empleados}"
+                                    AutoFitMode="Height"
+                                    TapCommand="{Binding TapCommand}"
+                                    HoldCommand="{Binding HoldCommand}"
+                                    SelectionBackgroundColor="Transparent"
+                                    VerticalOptions="FillAndExpand"
+                                    AllowSwiping="True">
+                    <SfLists:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <templates:CardEmpleado />
+                        </DataTemplate>
+                    </SfLists:SfListView.ItemTemplate>
+                    <SfLists:SfListView.RightSwipeTemplate>
+                        <DataTemplate x:Name="RightSwipeTemplate">
+                            <Grid BackgroundColor="Blue" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                <Label Grid.Row="0"
+                                        HeightRequest="50"
+                                        WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                        BackgroundColor="Transparent"
+                                        Text="EditItem" />
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer />
+                                </Grid.GestureRecognizers>
                             </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </SfLists:SfListView.ItemTemplate>
-            </SfLists:SfListView>
+                        </DataTemplate>
+                    </SfLists:SfListView.RightSwipeTemplate>
+                </SfLists:SfListView>
+            </StackLayout>
+            
         </Pull:SfPullToRefresh.PullableContent>
     </Pull:SfPullToRefresh>
     

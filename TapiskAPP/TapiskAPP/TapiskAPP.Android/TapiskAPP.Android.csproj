@@ -67,13 +67,16 @@
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
       <Version>16.3.0.21</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker">
+      <Version>16.3.0.21</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh">
       <Version>16.3.0.21</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
       <Version>3.0.0.5</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="27.0.2.1" />
@@ -85,6 +88,8 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Renderers\ImageEntryRenderer.cs" />
+    <Compile Include="Renderers\ShadowRenderer.cs" />
+    <Compile Include="Renderers\TableViewCustomRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SqLiteService.cs" />

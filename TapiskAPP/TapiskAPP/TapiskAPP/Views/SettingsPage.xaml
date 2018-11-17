@@ -4,15 +4,46 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="TapiskAPP.Views.SettingsPage"
+             xmlns:controls="clr-namespace:TapiskAPP.Controls"
+             xmlns:sfpicker="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <TableView Intent="Settings">
+        <controls:TableViewControl Intent="Settings">
             <TableRoot>
                 <TableSection Title="Interfaz">
-                    <EntryCell Text="Algo" />
+                    <SwitchCell Text="Usar tema oscuro"
+                                IsEnabled="False"/>
+                    <ViewCell>
+                        <Grid Margin="15,0,8,0">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenPickerCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="Moneda"/>
+                            <Label Grid.Column="1"
+                                    Text="{Binding ItemPickerSelected}"
+                                    TextColor="Indigo"
+                                    FontSize="Medium"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="End" />
+                            <sfpicker:SfPicker Grid.Column="1" 
+                                               PickerMode="Dialog"
+                                               x:Name="date"
+                                               ShowColumnHeader="False"
+                                               HeaderText="Elige una moneda"
+                                               HeaderBackgroundColor="DarkBlue"
+                                               SelectedItemTextColor="Indigo"
+                                               SelectedItem="{Binding ItemPickerSelected, Mode=TwoWay}"
+                                               IsOpen="{Binding IsPickerOpen, Mode=TwoWay}"/>
+                        </Grid>
+                    </ViewCell>
                 </TableSection>
-                <TableSection Title="Dispositivo">
-                    <SwitchCell Text="Algo se me ocurrirá" />
+                <TableSection Title="Cuenta">
+                    <SwitchCell Text="Recordarme" />
                     <ViewCell>
                         <Button Text="Cerrar Sesión"
                                 TextColor="DarkRed"
@@ -20,7 +51,7 @@
                     </ViewCell>
                 </TableSection>
             </TableRoot>
-        </TableView>
+        </controls:TableViewControl>
     </ContentPage.Content>
   
 </ContentPage>

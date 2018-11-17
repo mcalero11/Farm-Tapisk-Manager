@@ -18,29 +18,36 @@ namespace TapiskAPP.ViewModels
 {
 	public class UserPageViewModel : ViewModelBase
 	{
+        #region Commands
+        public Command<object> TapCommand { get; set; }
+        public Command<object> HoldCommand { get; set; }
+        public Command RefreshCommand { get; set; }
+
+        #endregion
+
+        #region Fields
         private IStatusBarColorManager _statusBarColorManager { get; set; }
         public IPageDialogService _dialogService { get; set; }
         public ISqLiteService _sqliteService { get; set; }
         private ObservableCollection<Empleado> _empleados;
-        public Command<object> TapCommand { get; set; }
-        public Command<object> HoldCommand { get; set; }
+        private bool _activity;
 
+        
 
+        #endregion
 
+        #region Properties
         public ObservableCollection<Empleado> Empleados
         {
             get { return _empleados; }
             set { SetProperty(ref _empleados, value); }
         }
-
-        private ObservableCollection<User> _sqliteUserJ;
-
-        public ObservableCollection<User> SqliteUser
+        public bool Activity
         {
-            get { return _sqliteUserJ; }
-            set { SetProperty(ref _sqliteUserJ, value); }
+            get { return _activity; }
+            set { SetProperty(ref _activity, value); }
         }
-
+        #endregion
 
         public UserPageViewModel(INavigationService navigationService,
                                     IStatusBarColorManager statusBarColorManager,
@@ -52,18 +59,36 @@ namespace TapiskAPP.ViewModels
             _statusBarColorManager.SetColor(155,0,255,1);
             _dialogService = dialogService;
             _sqliteService = sqLiteService;
-
-            Empleados = new ObservableCollection<Empleado>(MockEmpleados.GetEmpleados());
-            Task.Run(()=> GetSqliteUsers());
+            
+            Task.Run(async()=> { Activity=true; await fillUsers(); Activity = false; });
             TapCommand = new Command<object>(itemSelected);
             HoldCommand = new Command<object>(itemLongSelected);
+            RefreshCommand = new Command(async() => await Refresh());
         }
 
-        private async Task GetSqliteUsers()
+        public async Task Refresh()
         {
+            IsBusy = true;
+            await Task.Delay(1500);
+            await fillUsers();
+            IsBusy = false;
+        }
 
-            var sqliteUsers = await new SqLiteService(_sqliteService).GetUsers();
-            SqliteUser = new ObservableCollection<User>(sqliteUsers);
+        private async Task fillUsers()
+        {
+            var listEmployees = await new RestService().GetEmployees();
+            if (listEmployees == null)
+            {
+                await _dialogService.DisplayAlertAsync("Info", "Parece que hay problemas al intentar conectar con el servidor. Si el error persiste, contacte con soporte al cliente", "Aceptar");
+                await NavigationService.GoBackAsync();
+                return;
+            }
+            if (listEmployees.Count == 0)
+            {
+                await _dialogService.DisplayAlertAsync("Info", "No se han encontrado datos", "Aceptar");
+                return;
+            }
+            Empleados = new ObservableCollection<Empleado>(listEmployees);
         }
 
         private void itemLongSelected(object obj)
@@ -74,7 +99,6 @@ namespace TapiskAPP.ViewModels
 
         private async void itemSelected(object obj)
         {
-            await Task.Delay(3000);
             var employee = (Empleado)(obj as Syncfusion.ListView.XForms.ItemTappedEventArgs).ItemData;
             await _dialogService.DisplayAlertAsync("Info",$"{employee.Nombre}","OK");
         }

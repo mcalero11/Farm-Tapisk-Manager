@@ -62,7 +62,7 @@
                                 <TapGestureRecognizer Command="{Binding HomeCommand}" />
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="Cargo"
+                        <Label Text="{Binding Cargo}"
                                HorizontalTextAlignment="Center"
                                FontSize="Medium"/>
                     </StackLayout>

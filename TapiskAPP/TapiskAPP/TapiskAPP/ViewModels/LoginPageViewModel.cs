@@ -35,14 +35,6 @@ namespace TapiskAPP.ViewModels
             set { SetProperty(ref _iconColorProperty, value); }
         }
 
-        private bool _isBusy;
-
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { SetProperty(ref _isBusy, value); }
-        }
-
         private string _user;
 
         public string Username
@@ -94,6 +86,7 @@ namespace TapiskAPP.ViewModels
             var user = await new Data.SqLiteService(_sqLiteService).RetrieveUser();
             if (user != null)
             {
+                new Data.RestService().AssignToken(user.Token);
                 await NavigationService.NavigateAsync(new Uri($"http://www.TapiskAPP.com/{nameof(MasterPage)}/{nameof(Xamarin.Forms.NavigationPage)}/{nameof(Views.MainPage)}", System.UriKind.Absolute));
             }
         }
@@ -110,7 +103,7 @@ namespace TapiskAPP.ViewModels
                     IconColorProperty = SuccessColor;
                     IsBusy = false;
                     await Task.Delay(700);
-                    await NavigationService.NavigateAsync(new Uri($"http://www.TapiskAPP.com/{nameof(MasterPage)}/{nameof(Xamarin.Forms.NavigationPage)}/{nameof(Views.MainPage)}", System.UriKind.Absolute));
+                    await NavigationService.NavigateAsync(new Uri($"http://www.TapiskAPP.com/{nameof(MasterPage)}/{nameof(Xamarin.Forms.NavigationPage)}/{nameof(Views.MainPage)}", System.UriKind.Absolute),animated : true);
                     return;
                 }
                 

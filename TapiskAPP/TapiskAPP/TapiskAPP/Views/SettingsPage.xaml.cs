@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace TapiskAPP.Views
 {
@@ -7,6 +9,8 @@ namespace TapiskAPP.Views
         public SettingsPage()
         {
             InitializeComponent();
+            date.ItemsSource = new List<string> { "USD","YEN","PSL","KON", };
         }
+
     }
 }

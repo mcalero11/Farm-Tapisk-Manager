@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.Threading.Tasks;
+using TapiskAPP.ViewModels;
+using Xamarin.Forms;
 
 namespace TapiskAPP.Views.MenuItemPages
 {
@@ -7,7 +10,9 @@ namespace TapiskAPP.Views.MenuItemPages
         public UserPage()
         {
             InitializeComponent();
-            listEmployee.SelectionController = new Controls.SelectionListItem(listEmployee);
+            //listEmployee.SelectionController = new Controls.SelectionListItem(listEmployee);
+            
         }
+
     }
 }

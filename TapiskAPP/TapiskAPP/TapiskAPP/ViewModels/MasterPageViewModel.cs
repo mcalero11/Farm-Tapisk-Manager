@@ -28,6 +28,10 @@ namespace TapiskAPP.ViewModels
         {
             get { return $"{_user.Name} {_user.LastName}"; }
         }
+        public string Cargo
+        {
+            get;
+        }
 
         private IPageDialogService _dialogService { get; set; }
         private IStatusBarColorManager _statusBarColorManager { get; set; }

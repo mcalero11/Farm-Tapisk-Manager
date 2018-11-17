@@ -68,9 +68,8 @@ namespace TapiskAPP.Data
                 if (response.IsSuccessStatusCode)
                 {
                     isSuccess = true;
-                    // TODO: Save token [in progress]
+                    // TODO: Save token [Done]
                     
-                    //var stringContent = await Task.Run(response.Content.ReadAsStringAsync());
                     var responseJson = await Task.Run(async()=> (JObject)JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync()));
                     var token = responseJson.SelectToken("jwt").ToString();
                     AssignToken(token);
@@ -84,6 +83,9 @@ namespace TapiskAPP.Data
                         sqliteUser.Token = token;
                         sqliteUser.RememberToken = remember ? 1 : 0;
                         sqliteUser.CreatedToken = DateTime.Now.Ticks;
+                        // TODO: Guardar datos de cargo en local. actualizar tapisk.db
+                        sqliteUser.PositionId = 0;
+                        sqliteUser.PositionName = "not implemented yet";
                         var IsRemember = await new SqLiteService(sqLiteService).RememberUser(sqliteUser);
                         if (!IsRemember) Debug.WriteLine("          It seems that it could not be saved");
                     }
@@ -126,9 +128,25 @@ namespace TapiskAPP.Data
             throw new NotImplementedException();
         }
 
-        public Task<List<Empleado>> GetEmployees()
+        public async Task<List<Empleado>> GetEmployees()
         {
-            throw new NotImplementedException();
+            List<Empleado> employees = null;
+            var uri = new Uri(string.Format(baseUrl + "employees",string.Empty));
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    employees = JsonConvert.DeserializeObject<List<Empleado>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine("Error: " + ex.Message);
+            }
+            return employees;
         }
 
         public Task<Cargo> GetPosition(int id)
