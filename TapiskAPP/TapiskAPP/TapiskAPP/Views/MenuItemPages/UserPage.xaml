@@ -8,6 +8,7 @@
              xmlns:SfLists="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:Pull="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
              xmlns:templates="clr-namespace:TapiskAPP.Controls.DataTemplates"
+             x:Name="page"
              Title="{Binding Title}">
     <Pull:SfPullToRefresh  TransitionMode="SlideOnTop"
                            RefreshContentThreshold="0"
@@ -33,7 +34,9 @@
                                     HoldCommand="{Binding HoldCommand}"
                                     SelectionBackgroundColor="Transparent"
                                     VerticalOptions="FillAndExpand"
-                                    AllowSwiping="True">
+                                    AllowSwiping="True"
+                                    SwipeThreshold="75"
+                                    SwipeEnded="ListEmployee_SwipeEnded">
                     <SfLists:SfListView.ItemTemplate>
                         <DataTemplate>
                             <templates:CardEmpleado />
@@ -41,14 +44,25 @@
                     </SfLists:SfListView.ItemTemplate>
                     <SfLists:SfListView.RightSwipeTemplate>
                         <DataTemplate x:Name="RightSwipeTemplate">
-                            <Grid BackgroundColor="Blue" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <Grid HorizontalOptions="Fill" 
+                                  VerticalOptions="Fill"
+                                  Margin="7">
                                 <Label Grid.Row="0"
                                         HeightRequest="50"
-                                        WidthRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                        WidthRequest="50"
+                                       HorizontalTextAlignment="Center" 
+                                       VerticalTextAlignment="Center"
                                         BackgroundColor="Transparent"
-                                        Text="EditItem" />
+                                        Text="&#xf2ed;" 
+                                       TextColor="DarkRed"
+                                       FontSize="40">
+                                    <Label.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String" 
+                                    Android="fa-solid-900.ttf#Font Awesome 5 Free Solid" />
+                                    </Label.FontFamily>
+                                </Label>
                                 <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer />
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
                                 </Grid.GestureRecognizers>
                             </Grid>
                         </DataTemplate>

@@ -5,20 +5,9 @@
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin &#xf2bb; Forms and Prism!"
-               FontSize="Large">
-            <Label.FontFamily>
-                <OnPlatform x:TypeArguments="x:String" 
-                                    Android="fa-solid-900.ttf#Font Awesome 5 Free Solid" />
-            </Label.FontFamily>
-        </Label>
-        <Label Text="Welcome to Xamarin &#xf2bb; Forms and Prism!"
-               FontSize="Large">
-            <Label.FontFamily>
-                <OnPlatform x:TypeArguments="x:String" 
-                                    Android="fa-regular-400.ttf#Font Awesome 5 Free Regular" />
-            </Label.FontFamily>
-        </Label>
+
+        <Label Text="In Comming..."
+               FontSize="Large"/>
     </StackLayout>
 
 </ContentPage>

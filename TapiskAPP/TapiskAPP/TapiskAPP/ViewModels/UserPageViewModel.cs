@@ -22,6 +22,7 @@ namespace TapiskAPP.ViewModels
         public Command<object> TapCommand { get; set; }
         public Command<object> HoldCommand { get; set; }
         public Command RefreshCommand { get; set; }
+        public Command DeleteCommand { get; set; }
 
         #endregion
 
@@ -64,7 +65,15 @@ namespace TapiskAPP.ViewModels
             TapCommand = new Command<object>(itemSelected);
             HoldCommand = new Command<object>(itemLongSelected);
             RefreshCommand = new Command(async() => await Refresh());
+            DeleteCommand = new Command(async (o) => await Delete(o));
         }
+
+        public async Task Delete(object obj)
+        {
+            var employee = (Empleado)obj;
+            await _dialogService.DisplayAlertAsync("Test","test VM " + employee.Nombre,"ok");
+        }
+        
 
         public async Task Refresh()
         {
@@ -76,19 +85,20 @@ namespace TapiskAPP.ViewModels
 
         private async Task fillUsers()
         {
-            var listEmployees = await new RestService().GetEmployees();
-            if (listEmployees == null)
+            var response = await new RestService().GetList<Empleado>("employees");
+            if (!response.IsSuccess)
             {
                 await _dialogService.DisplayAlertAsync("Info", "Parece que hay problemas al intentar conectar con el servidor. Si el error persiste, contacte con soporte al cliente", "Aceptar");
                 await NavigationService.GoBackAsync();
                 return;
             }
-            if (listEmployees.Count == 0)
+            var list = (List<Empleado>)response.Result;
+            if (list.Count == 0)
             {
                 await _dialogService.DisplayAlertAsync("Info", "No se han encontrado datos", "Aceptar");
                 return;
             }
-            Empleados = new ObservableCollection<Empleado>(listEmployees);
+            Empleados = new ObservableCollection<Empleado>(list);
         }
 
         private void itemLongSelected(object obj)
