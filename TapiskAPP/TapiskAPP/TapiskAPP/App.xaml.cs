@@ -22,8 +22,7 @@ namespace TapiskAPP
         {
             //Register Syncfusion license
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzY3ODBAMzEzNjJlMzMyZTMwUUVQOUNCU2hxZGlTUElmLzhNTGJlNTUwZ3hxcUpwUjVyblJYM3BKM3cvcz0=");
-
-
+            
             InitializeComponent();
 
             //await NavigationService.NavigateAsync($"{nameof(MasterPage)}/{nameof(NavigationPage)}/{nameof(Views.MainPage)}");
@@ -40,6 +39,7 @@ namespace TapiskAPP
             containerRegistry.RegisterForNavigation<CropPage,CropPageViewModel>();
             containerRegistry.RegisterForNavigation<HarvestPage,HarvestPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage,SettingsPageViewModel>();
+            containerRegistry.RegisterForNavigation<NewEmployeePage, NewEmployeePageViewModel>();
         }
         protected override void OnSleep()
         {

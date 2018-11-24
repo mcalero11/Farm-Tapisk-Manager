@@ -71,7 +71,18 @@ namespace TapiskAPP.ViewModels
         public async Task Delete(object obj)
         {
             var employee = (Empleado)obj;
-            await _dialogService.DisplayAlertAsync("Test","test VM " + employee.Nombre,"ok");
+            var gree = await _dialogService.DisplayAlertAsync("AlertA", $"¿Estás seguro que deseas eliminar a {employee.Nombre}?", "Eliminar", "Cancelar");
+            if (gree)
+            {
+                var response = await new RestService().Delete("employees",employee.Id);
+                if (response != null && response.IsSuccess == true)
+                {
+                    _dialogService.DisplayAlertAsync("Info","Los datos han sido eliminados exitosamente","Ok");
+                    Refresh();
+                    return;
+                }
+                await _dialogService.DisplayAlertAsync("Info", "Un error ha ocurrido al intentar eliminar el registro", "Ok");
+            }
         }
         
 

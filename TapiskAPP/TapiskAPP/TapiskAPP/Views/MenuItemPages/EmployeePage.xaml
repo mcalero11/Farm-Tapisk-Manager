@@ -10,6 +10,9 @@
              xmlns:templates="clr-namespace:TapiskAPP.Controls.DataTemplates"
              x:Name="page"
              Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_person_add" Command=""/>
+    </ContentPage.ToolbarItems>
     <Pull:SfPullToRefresh  TransitionMode="SlideOnTop"
                            RefreshContentThreshold="0"
                            PullingThershold="60"
