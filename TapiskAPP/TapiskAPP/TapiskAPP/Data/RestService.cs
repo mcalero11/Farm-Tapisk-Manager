@@ -70,9 +70,9 @@ namespace TapiskAPP.Data
                         sqliteUser.Token = token;
                         sqliteUser.RememberToken = remember ? 1 : 0;
                         sqliteUser.CreatedToken = DateTime.Now.Ticks;
-                        // TODO: Guardar datos de cargo en local. actualizar tapisk.db
-                        //sqliteUser.PositionId = 0;
-                        //sqliteUser.PositionName = "not implemented yet";
+                        // TODO: Guardar datos de cargo en local. 
+                        sqliteUser.PositionId = 0;
+                        sqliteUser.PositionName = "not implemented yet";
                         var IsRemember = await new SqLiteService(sqLiteService).RememberUser(sqliteUser);
                         if (!IsRemember) Debug.WriteLine("          It seems that it could not be saved");
                     }

@@ -12,6 +12,7 @@ using TapiskAPP.Data;
 using TapiskAPP.Models;
 using TapiskAPP.Models.SqLiteModels;
 using TapiskAPP.Services;
+using TapiskAPP.Views.MenuItemPages;
 using Xamarin.Forms;
 
 namespace TapiskAPP.ViewModels
@@ -121,7 +122,9 @@ namespace TapiskAPP.ViewModels
         private async void itemSelected(object obj)
         {
             var employee = (Empleado)(obj as Syncfusion.ListView.XForms.ItemTappedEventArgs).ItemData;
-            await _dialogService.DisplayAlertAsync("Info",$"{employee.Nombre}","OK");
+            NavigationParameters pairs = new NavigationParameters();
+            pairs.Add("Employee",employee.Id);
+            await NavigationService.NavigateAsync(nameof(NewEmployeePage),pairs);
         }
     }
 }

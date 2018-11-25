@@ -16,31 +16,31 @@ namespace TapiskAPP.ViewModels
 {
 	public class MasterPageViewModel : ViewModelBase
 	{
-        User _user;
+        #region Fields
+        private static User _user;
         private ObservableCollection<MenuItem> _menuItems;
+        private IPageDialogService _dialogService { get; set; }
+        private IStatusBarColorManager _statusBarColorManager { get; set; }
+        private ISqLiteService _sqLiteService { get; set; }
+        public MenuItem SelectedItem { get; set; }
+        public DelegateCommand ItemTappedCommand { get; set; }
+        public DelegateCommand HomeCommand { get; set; }
+        public DelegateCommand SettingsCommand { get; set; }
+        #endregion
 
+        #region Properties
+        public User User
+        {
+            get { return _user; }
+            set { SetProperty(ref _user, value); }
+        }
         public ObservableCollection<MenuItem> MenuItems
         {
             get { return _menuItems; }
             set { SetProperty(ref _menuItems, value); }
         }
-        public string Nombres
-        {
-            get { return $"{_user.Name} {_user.LastName}"; }
-        }
-        public string Cargo
-        {
-            get;
-        }
-
-        private IPageDialogService _dialogService { get; set; }
-        private IStatusBarColorManager _statusBarColorManager { get; set; }
-        private ISqLiteService _sqLiteService { get; set; }
-        public MenuItem SelectedItem { get; set; }
-
-        public DelegateCommand ItemTappedCommand { get; set; }
-        public DelegateCommand HomeCommand { get; set; }
-        public DelegateCommand SettingsCommand { get; set; }
+        #endregion
+        
 
         public MasterPageViewModel(INavigationService navigationService, 
                                     IPageDialogService dialogService,

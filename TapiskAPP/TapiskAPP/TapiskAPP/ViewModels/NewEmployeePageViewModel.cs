@@ -1,16 +1,19 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace TapiskAPP.ViewModels
 {
-	public class NewEmployeePageViewModel : BindableBase
+	public class NewEmployeePageViewModel : ViewModelBase
 	{
-        public NewEmployeePageViewModel()
+        public NewEmployeePageViewModel(INavigationService navigationService) : base(navigationService)
         {
 
         }
+        
+        
 	}
 }

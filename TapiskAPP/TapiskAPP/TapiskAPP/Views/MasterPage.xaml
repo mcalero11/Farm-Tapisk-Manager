@@ -54,15 +54,27 @@
                                 <TapGestureRecognizer Command="{Binding HomeCommand}" />
                             </Frame.GestureRecognizers>
                         </Frame>
-                        <Label Text="{Binding Nombres}"
-                               HorizontalTextAlignment="Center"
-                               FontSize="Medium"
-                               TextColor="Maroon">
-                            <Label.GestureRecognizers>
+                        <Grid HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding User.Name}"
+                                   Grid.Column="0"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="Medium"
+                                   TextColor="Maroon"/>
+                            <Label Text="{Binding User.LastName, StringFormat=' {0}'}"
+                                   Grid.Column="1"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="Medium"
+                                   TextColor="Maroon"/>
+                            <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding HomeCommand}" />
-                            </Label.GestureRecognizers>
-                        </Label>
-                        <Label Text="{Binding Cargo}"
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                        <Label Text="{Binding User.PositionName}"
                                HorizontalTextAlignment="Center"
                                FontSize="Medium"/>
                     </StackLayout>
