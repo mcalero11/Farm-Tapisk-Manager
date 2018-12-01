@@ -17,6 +17,12 @@
             </TableSection>
             <TableSection Title="Avanzado">
                 
+                
+                <ViewCell>
+                    <Button Text="Eliminar"
+                                TextColor="DarkRed"
+                                Command="{Binding Logout}"/>
+                </ViewCell>
             </TableSection>
         </TableRoot>
     </controls:TableViewControl>

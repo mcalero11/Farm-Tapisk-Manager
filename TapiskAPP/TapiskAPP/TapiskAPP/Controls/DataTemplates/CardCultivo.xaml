@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapiskAPP.Controls.DataTemplates.CardCultivo">
+  <ViewCell.View>
+      <StackLayout>
+          <Label Text="{Binding Nombre}" />
+            <Image Source="http://www.enlineahn.com/wp-content/uploads/2016/04/planta-de-frijoles.jpg" 
+                   WidthRequest="500"/>
+        </StackLayout>
+  </ViewCell.View>
+</ViewCell>

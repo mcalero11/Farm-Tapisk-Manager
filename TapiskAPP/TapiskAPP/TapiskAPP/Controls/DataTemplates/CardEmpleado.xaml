@@ -1,26 +1,70 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
           xmlns:controls="clr-namespace:TapiskAPP.Controls"
-             x:Class="TapiskAPP.Controls.DataTemplates.CardEmpleado">
-  <ViewCell.View>
+          x:Class="TapiskAPP.Controls.DataTemplates.CardEmpleado">
+    <ViewCell.View>
         <controls:ShadowControl OutlineColor="WhiteSmoke"
-                                                    Elevation="10"
-                                                    Margin="7"
-                                                    CornerRadius="3">
-            <StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Nombre, StringFormat='{0} ' }"
-                                               FontSize="Medium"
-                                               TextColor="DarkBlue"/>
-                    <Label Text="{Binding Apellido}" 
-                                               FontSize="Medium"
-                                               TextColor="DarkBlue"/>
-                </StackLayout>
-
-                <Label Text="{Binding FechaContratacion, StringFormat='Fecha de contratación: {0}'}" />
-                <Label Text="{Binding Cargo.Nombre, StringFormat='Cargo: {0}'}" />
+                                Elevation="5"
+                                Margin="5,3,5,7"
+                                CornerRadius="1"
+                                Padding="0">
+            <!--<StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding Nombre, StringFormat='{0} ' }"
+                                            FontSize="Medium"
+                                            TextColor="DarkBlue"/>
+                <Label Text="{Binding Apellido}" 
+                                            FontSize="Medium"
+                                            TextColor="DarkBlue"/>
             </StackLayout>
+
+            <Label Text="{Binding FechaContratacion, StringFormat='Fecha de contratación: {0}'}" />
+            <Label Text="{Binding Cargo.Nombre, StringFormat='Cargo: {0}'}" />
+        </StackLayout>-->
+
+            <StackLayout Orientation="Horizontal"
+                         Spacing="0">
+                <BoxView VerticalOptions="FillAndExpand"
+                         HorizontalOptions="Start"
+                         WidthRequest="5"
+                         Color="IndianRed"/>
+                <Frame BackgroundColor="LightBlue"
+                       HorizontalOptions="Start"
+                       VerticalOptions="FillAndExpand">
+                    <Image Source="user.png"
+                           WidthRequest="40"/>
+                </Frame>
+                <StackLayout VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand"
+                             Margin="5,10,5,10"
+                             Spacing="7">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Nombre, StringFormat='{0} ' }"
+                                            FontSize="Medium"
+                                            TextColor="DarkBlue"/>
+                        <Label Text="{Binding Apellido}" 
+                                            FontSize="Medium"
+                                            TextColor="DarkBlue"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Contratación: "
+                           FontSize="Small"
+                           TextColor="BurlyWood"/>
+                        <Label Text="{Binding FechaContratacion}" 
+                           FontSize="Small"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Cargo: "
+                           FontSize="Small"
+                           TextColor="BurlyWood"/>
+                        <Label Text="{Binding Cargo.Nombre}" 
+                           FontSize="Small"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            
         </controls:ShadowControl>
     </ViewCell.View>
 </ViewCell>

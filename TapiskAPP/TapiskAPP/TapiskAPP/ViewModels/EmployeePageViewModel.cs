@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TapiskAPP.Data;
+using TapiskAPP.Helpers;
 using TapiskAPP.Models;
 using TapiskAPP.Models.SqLiteModels;
 using TapiskAPP.Services;
@@ -24,6 +25,7 @@ namespace TapiskAPP.ViewModels
         public Command<object> HoldCommand { get; set; }
         public Command RefreshCommand { get; set; }
         public Command DeleteCommand { get; set; }
+        public Command AddCommand { get; set; }
 
         #endregion
 
@@ -67,26 +69,18 @@ namespace TapiskAPP.ViewModels
             HoldCommand = new Command<object>(itemLongSelected);
             RefreshCommand = new Command(async() => await Refresh());
             DeleteCommand = new Command(async (o) => await Delete(o));
+            AddCommand = new Command(async () => await NavigationService.NavigateAsync(nameof(NewEmployeePage)));
         }
 
         public async Task Delete(object obj)
         {
             var employee = (Empleado)obj;
-            var gree = await _dialogService.DisplayAlertAsync("AlertA", $"¿Estás seguro que deseas eliminar a {employee.Nombre}?", "Eliminar", "Cancelar");
-            if (gree)
-            {
-                var response = await new RestService().Delete("employees",employee.Id);
-                if (response != null && response.IsSuccess == true)
-                {
-                    _dialogService.DisplayAlertAsync("Info","Los datos han sido eliminados exitosamente","Ok");
-                    Refresh();
-                    return;
-                }
-                await _dialogService.DisplayAlertAsync("Info", "Un error ha ocurrido al intentar eliminar el registro", "Ok");
-            }
+            await HelperMethods.Delete(employee.Id,
+                                       $"¿Estás seguro que deseas eliminar a {employee.Nombre}?",
+                                       "employees",
+                                       _dialogService);
         }
         
-
         public async Task Refresh()
         {
             IsBusy = true;
@@ -113,10 +107,12 @@ namespace TapiskAPP.ViewModels
             Empleados = new ObservableCollection<Empleado>(list);
         }
 
-        private void itemLongSelected(object obj)
+        private async void itemLongSelected(object obj)
         {
             var employee = (Empleado)(obj as Syncfusion.ListView.XForms.ItemHoldingEventArgs).ItemData;
-            _dialogService.DisplayAlertAsync("Info",employee.Apellido,"Ok");
+            NavigationParameters pairs = new NavigationParameters();
+            pairs.Add("Employee", employee.Id);
+            await NavigationService.NavigateAsync(nameof(NewEmployeePage), pairs);
         }
 
         private async void itemSelected(object obj)
@@ -124,7 +120,7 @@ namespace TapiskAPP.ViewModels
             var employee = (Empleado)(obj as Syncfusion.ListView.XForms.ItemTappedEventArgs).ItemData;
             NavigationParameters pairs = new NavigationParameters();
             pairs.Add("Employee",employee.Id);
-            await NavigationService.NavigateAsync(nameof(NewEmployeePage),pairs);
+            await NavigationService.NavigateAsync(nameof(DetailEmployeePage),pairs);
         }
     }
 }

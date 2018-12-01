@@ -40,6 +40,9 @@ namespace TapiskAPP
             containerRegistry.RegisterForNavigation<HarvestPage,HarvestPageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage,SettingsPageViewModel>();
             containerRegistry.RegisterForNavigation<NewEmployeePage, NewEmployeePageViewModel>();
+            containerRegistry.RegisterForNavigation<DetailEmployeePage, DetailEmployeePageViewModel>();
+            containerRegistry.RegisterForNavigation<NewCropPage, NewCropPageViewModel>();
+            containerRegistry.RegisterForNavigation<DetailCropPage, DetailCropPageViewModel>();
         }
         protected override void OnSleep()
         {
