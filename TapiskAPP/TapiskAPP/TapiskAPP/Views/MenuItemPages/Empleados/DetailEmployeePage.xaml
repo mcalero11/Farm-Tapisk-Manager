@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="TapiskAPP.Views.MenuItemPages.DetailEmployeePage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_edit" Command="{Binding EditCommand}"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout Spacing="10"
+                 Margin="10">
+        <StackLayout Spacing="0">
+            <Label Text="Nombre"
+               FontSize="Small"/>
+            <StackLayout Orientation="Horizontal"
+                         Spacing="0">
+                <Label Text="{Binding Empleado.Nombre, StringFormat='{0 }'}"
+                       FontSize="Large"/>
+                <Label Text="{Binding Empleado.Apellido}"
+                       FontSize="Large"/>
+            </StackLayout>
+        </StackLayout>
+        
+        <StackLayout Spacing="0">
+            <Label Text="Fecha de Contratación"
+               FontSize="Small"/>
+            <Label Text="{Binding Empleado.FechaContratacion}"
+                   FontSize="Large"/>
+        </StackLayout>
+        
+        <StackLayout Spacing="0">
+            <Label Text="Cargo"
+               FontSize="Small"/>
+            <Label Text="{Binding Empleado.Cargo.Nombre}"
+                   FontSize="Large"/>
+        </StackLayout>
+
+        <StackLayout Spacing="0">
+            <Label Text="Referido por"
+               FontSize="Small"/>
+            <Label Text="none"
+                   FontSize="Large"/>
+        </StackLayout>
+
+        <Button Text="ELIMINAR"
+                TextColor="DarkRed"
+                Command="{Binding DeleteCommand}"
+                VerticalOptions="End"/>
+    </StackLayout>
+</ContentPage>

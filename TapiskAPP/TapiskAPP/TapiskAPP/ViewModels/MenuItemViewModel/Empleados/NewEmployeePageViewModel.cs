@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace TapiskAPP.ViewModels
 {
-	public class NewEmployeePageViewModel : ViewModelBase
+	public class NewEmployeePageViewModel : ViewModelBase, INavigatedAware
 	{
         #region Commands
 
@@ -40,9 +40,22 @@ namespace TapiskAPP.ViewModels
                                                                               _dialogService));
         }
 
+
         #endregion
         #region Methods
-        
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            var employee = parameters.GetValue<Empleado>("Employee");
+
+            Empleado = employee ?? new Empleado();
+
+        }
+
         #endregion
 
 

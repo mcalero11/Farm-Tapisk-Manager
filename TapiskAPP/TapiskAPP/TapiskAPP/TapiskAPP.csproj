@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\MenuItemPages\EmployeePage.xaml.cs">
+    <Compile Update="Views\MenuItemPages\Empleados\EmployeePage.xaml.cs">
       <DependentUpon>EmployeePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -35,25 +35,25 @@
     <EmbeddedResource Update="Views\MasterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MenuItemPages\CropPage.xaml">
+    <EmbeddedResource Update="Views\MenuItemPages\Cultivos\CropPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MenuItemPages\DetailCropPage.xaml">
+    <EmbeddedResource Update="Views\MenuItemPages\Cultivos\DetailCropPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MenuItemPages\DetailEmployeePage.xaml">
+    <EmbeddedResource Update="Views\MenuItemPages\Empleados\DetailEmployeePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MenuItemPages\HarvestPage.xaml">
+    <EmbeddedResource Update="Views\MenuItemPages\Cosechas\HarvestPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MenuItemPages\NewCropPage.xaml">
+    <EmbeddedResource Update="Views\MenuItemPages\Cultivos\NewCropPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MenuItemPages\NewEmployeePage.xaml">
+    <EmbeddedResource Update="Views\MenuItemPages\Empleados\NewEmployeePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MenuItemPages\EmployeePage.xaml">
+    <EmbeddedResource Update="Views\MenuItemPages\Empleados\EmployeePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SettingsPage.xaml">

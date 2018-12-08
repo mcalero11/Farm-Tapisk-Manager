@@ -18,5 +18,9 @@ namespace TapiskAPP.Models
 
         [JsonProperty("active")]
         public bool Active { get; set; }
+        
+        [JsonProperty("active_harvests")]
+        public int CosechasActivas { get; set; }
+
     }
 }

@@ -32,13 +32,13 @@
                                    Margin="0,0,0,-30"/>
                 <SfLists:SfListView x:Name="listEmployee"
                                     ItemsSource="{Binding Cultivos}"
-                                    AutoFitMode="Height"
                                     TapCommand="{Binding TapCommand}"
                                     HoldCommand="{Binding HoldCommand}"
                                     SelectionBackgroundColor="Transparent"
                                     VerticalOptions="FillAndExpand"
                                     AllowSwiping="True"
                                     SwipeThreshold="75"
+                                    AutoFitMode="Height"
                                     SwipeEnded="Listcrop_SwipeEnded">
                     <SfLists:SfListView.ItemTemplate>
                         <DataTemplate>

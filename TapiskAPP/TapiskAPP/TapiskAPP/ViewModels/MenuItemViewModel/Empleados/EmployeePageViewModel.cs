@@ -63,13 +63,13 @@ namespace TapiskAPP.ViewModels
             _statusBarColorManager.SetColor(155,0,255,1);
             _dialogService = dialogService;
             _sqliteService = sqLiteService;
-            
+            AddCommand = new Command(async () => await NavigationService.NavigateAsync(nameof(NewEmployeePage),animated: true));
             Task.Run(async()=> { Activity=true; await fillUsers(); Activity = false; });
             TapCommand = new Command<object>(itemSelected);
             HoldCommand = new Command<object>(itemLongSelected);
             RefreshCommand = new Command(async() => await Refresh());
             DeleteCommand = new Command(async (o) => await Delete(o));
-            AddCommand = new Command(async () => await NavigationService.NavigateAsync(nameof(NewEmployeePage)));
+            
         }
 
         public async Task Delete(object obj)
@@ -111,7 +111,7 @@ namespace TapiskAPP.ViewModels
         {
             var employee = (Empleado)(obj as Syncfusion.ListView.XForms.ItemHoldingEventArgs).ItemData;
             NavigationParameters pairs = new NavigationParameters();
-            pairs.Add("Employee", employee.Id);
+            pairs.Add("Employee", employee);
             await NavigationService.NavigateAsync(nameof(NewEmployeePage), pairs);
         }
 
@@ -119,7 +119,7 @@ namespace TapiskAPP.ViewModels
         {
             var employee = (Empleado)(obj as Syncfusion.ListView.XForms.ItemTappedEventArgs).ItemData;
             NavigationParameters pairs = new NavigationParameters();
-            pairs.Add("Employee",employee.Id);
+            pairs.Add("Employee",employee);
             await NavigationService.NavigateAsync(nameof(DetailEmployeePage),pairs);
         }
     }

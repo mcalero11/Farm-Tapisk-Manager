@@ -7,7 +7,7 @@ using System.Text;
 
 namespace TapiskAPP.ViewModels
 {
-    public class ViewModelBase : BindableBase, INavigationAware, IDestructible
+    public class ViewModelBase : BindableBase, IDestructible
     {
         protected INavigationService NavigationService { get; private set; }
 
@@ -36,19 +36,5 @@ namespace TapiskAPP.ViewModels
 
         }
 
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-
-        }
-
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-
-        }
-
-        public void OnNavigatingTo(INavigationParameters parameters)
-        {
-
-        }
     }
 }

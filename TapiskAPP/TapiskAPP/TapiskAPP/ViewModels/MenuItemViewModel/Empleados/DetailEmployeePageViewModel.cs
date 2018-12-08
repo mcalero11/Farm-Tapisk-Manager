@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace TapiskAPP.ViewModels
 {
-	public class DetailEmployeePageViewModel : ViewModelBase
+	public class DetailEmployeePageViewModel : ViewModelBase , INavigatedAware
 	{
         #region Commands
         public Command EditCommand { get; set; }
@@ -50,11 +50,24 @@ namespace TapiskAPP.ViewModels
 
         private async void EditItem()
         {
-            // TODO: Imlpementar envio de datos hacia página editar
             NavigationParameters pairs = new NavigationParameters();
-            pairs.Add("Employee", null);
-            await NavigationService.NavigateAsync(nameof(DetailEmployeePage), pairs);
+            pairs.Add("Employee", Empleado);
+            await NavigationService.NavigateAsync(nameof(NewEmployeePage), pairs);
         }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            var employee = parameters.GetValue<Empleado>("Employee");
+            Empleado = employee ?? new Empleado();
+        }
+
+
+
         #endregion
 
     }

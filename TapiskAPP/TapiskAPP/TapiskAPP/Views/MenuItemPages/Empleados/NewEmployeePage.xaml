@@ -10,18 +10,26 @@
                                 Margin="7">
         <TableRoot>
             <TableSection Title="Información general">
-                
+                <EntryCell Label="Nombres"/>
+                <EntryCell Label="Apellidos"/>
+                <EntryCell Label="Fecha de Contratación" />
             </TableSection>
             <TableSection Title="Salarios">
-                
+                <EntryCell Label="Cargo"/>
+                <EntryCell Label="Salario base"
+                           Keyboard="Numeric"/>
             </TableSection>
             <TableSection Title="Avanzado">
-                
-                
+                <EntryCell Label="Nombre de usuario" />
+                <EntryCell Label="Contraseña" 
+                           Keyboard="Password"/>
+                <EntryCell Label="Confirmación" 
+                           Keyboard="Password" />
                 <ViewCell>
                     <Button Text="Eliminar"
-                                TextColor="DarkRed"
-                                Command="{Binding Logout}"/>
+                            TextColor="DarkRed"
+                            Command="{Binding DeleteCommand}"
+                            IsVisible="True"/>
                 </ViewCell>
             </TableSection>
         </TableRoot>

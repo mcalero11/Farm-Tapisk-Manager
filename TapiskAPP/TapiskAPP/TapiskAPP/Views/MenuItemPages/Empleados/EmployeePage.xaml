@@ -39,7 +39,8 @@
                                     VerticalOptions="FillAndExpand"
                                     AllowSwiping="True"
                                     SwipeThreshold="75"
-                                    SwipeEnded="ListEmployee_SwipeEnded">
+                                    SwipeEnded="ListEmployee_SwipeEnded"
+                                    >
                     <SfLists:SfListView.ItemTemplate>
                         <DataTemplate>
                             <templates:CardEmpleado />
@@ -65,7 +66,7 @@
                                     </Label.FontFamily>
                                 </Label>
                                 <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                                 </Grid.GestureRecognizers>
                             </Grid>
                         </DataTemplate>
